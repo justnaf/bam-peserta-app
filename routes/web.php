@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AchieveController;
 use App\Http\Controllers\CoreController;
 use App\Http\Controllers\DataDiriController;
+use App\Http\Controllers\EduController;
+use App\Http\Controllers\OrgController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,7 +15,13 @@ Route::get('/', function () {
 Route::get('/dashboard', [CoreController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('datadiri', DataDiriController::class);
+
+
+    // Profile Route
+    Route::resource('datadiri', DataDiriController::class); // Data Diri Resource
+    Route::resource('eduhistory', EduController::class); // Riwayat Pendidikan
+    Route::resource('orgHistories', OrgController::class); // Riwayat Organisasi
+    Route::resource('achievement', AchieveController::class); // Prestasi
     Route::post('/datadiri', [CoreController::class, 'storeProfilePic'])->name('profile.ganti.pic');
     Route::get('/profile/email-change', [CoreController::class, 'gantiEmail'])->name('profile.ganti.email');
     Route::get('/profile/pwd-change', [CoreController::class, 'gantiPwd'])->name('profile.ganti.pass');

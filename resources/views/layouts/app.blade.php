@@ -18,15 +18,14 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="md:max-w-sm md:text-sm text-xs mx-auto bg-gray-800">
-    @include('includes.toast')
     <div class="bg-gray-200 min-h-screen">
-        <header class="w-full flex justify-between bg-white shadow p-4">
+        <header class="w-full flex justify-between bg-white shadow p-4 fixed md:max-w-sm">
             {{$header}}
             <section class="flex items-center">
                 <x-application-logo width="60px" height="20px" />
             </section>
         </header>
-        <main>
+        <main class="pt-5">
             {{$slot}}
         </main>
     </div>

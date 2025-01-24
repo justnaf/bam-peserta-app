@@ -198,8 +198,7 @@
     @if(session('success'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            alerta('{{ session('
-                success ') }}', 'success');
+            alerta('{{ session('success') }}', 'success');
         });
 
     </script>
