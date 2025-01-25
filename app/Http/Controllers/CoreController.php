@@ -112,7 +112,7 @@ class CoreController extends Controller
     {
         $dataDiri = DataDiri::find(Auth::user()->dataDiri->id);
 
-        if (Storage::delete($dataDiri->profile_picture)) {
+        if (Storage::disk('public')->delete($dataDiri->profile_picture)) {
             $image = Image::read($request->file('profile'));
             $image->coverDown(354, 472);
             $encoded = $image->toPng();
@@ -120,12 +120,12 @@ class CoreController extends Controller
             Storage::disk('public')->put('profile_pic/' . $namePath . '.png', $encoded);
             $dataDiri->profile_picture = 'profile_pic/' . $namePath . '.png';
             if ($dataDiri->save()) {
-                return redirect()->route('datadiri.index')->with('success', 'Sukses Updat Foto Profile.');
+                return redirect()->route('dataDiri.index')->with('success', 'Sukses Updat Foto Profile.');
             } else {
-                return redirect()->route('datadiri.index')->with('warning', 'Gagal Update Foto Profile.');
+                return redirect()->route('dataDiri.index')->with('warning', 'Gagal Update Foto Profile.');
             }
         }
-        return redirect()->route('datadiri.index')->with('error', 'Gagal Update Foto Profile.');
+        return redirect()->route('dataDiri.index')->with('error', 'Gagal Update Foto Profile.');
     }
 
     public function gantiEmail(Request $request)
