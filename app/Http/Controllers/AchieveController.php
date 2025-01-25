@@ -30,7 +30,16 @@ class AchieveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new OwnAchievement();
+        $data->user_id = Auth::id();
+        $data->name = $request->name;
+        $data->achieve_year = $request->achieve_year;
+        $data->save();
+        if ($data->wasRecentlyCreated) {
+            return redirect()->route('achievement.index')->with('success', 'Data Perstasi berhasil Ditambahkan');
+        } else {
+            return redirect()->route('achievement.index')->with('error', 'Data Perstasi Gagal Ditambahkan');
+        }
     }
 
     /**
@@ -44,24 +53,32 @@ class AchieveController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(OwnAchievement $ownAchievement)
+    public function edit(OwnAchievement $achievement)
     {
-        //
+        return view('profile.achievement.edit', compact('achievement'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, OwnAchievement $ownAchievement)
+    public function update(Request $request, OwnAchievement $achievement)
     {
-        //
+        $achievement->name = $request->name;
+        $achievement->achieve_year = $request->achieve_year;
+        if ($achievement->save()) {
+            return redirect()->route('achievement.index')->with('success', 'Data Perstasi berhasil Diperbarui');
+        } else {
+            return redirect()->route('achievement.index')->with('error', 'Data Perstasi Gagal Diperbarui');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(OwnAchievement $ownAchievement)
+    public function destroy(OwnAchievement $achievement)
     {
-        //
+        $achievement->delete();
+
+        return redirect()->route('achievement.index')->with('success', 'Prestasi Deleted successfully.');
     }
 }
