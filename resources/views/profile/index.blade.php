@@ -15,7 +15,7 @@
                 <div class="px-3 py-3 text-gray-900">
                     <ul class="space-y-3 text-md">
                         <li class="border-b-2 py-2 hover:text-emerald-500">
-                            <a href="{{route('datadiri.index')}}" class="flex items-center space-x-4"><i class="fas fa-user"></i> <span>Data Diri</span></a>
+                            <a href="{{route('dataDiri.index')}}" class="flex items-center space-x-4"><i class="fas fa-user"></i> <span>Data Diri</span></a>
                         </li>
                         <li class="border-b-2 py-2 hover:text-emerald-500">
                             <a href="{{route('eduhistory.index')}}" class="flex items-center space-x-4"><i class="fas fa-university"></i><span>Riwayat Pendidikan</span></a>

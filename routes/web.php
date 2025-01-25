@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
 
 
     // Profile Route
-    Route::resource('datadiri', DataDiriController::class); // Data Diri Resource
+    Route::resource('dataDiri', DataDiriController::class); // Data Diri Resource
     Route::resource('eduhistory', EduController::class); // Riwayat Pendidikan
     Route::resource('orgHistories', OrgController::class); // Riwayat Organisasi
     Route::resource('achievement', AchieveController::class); // Prestasi

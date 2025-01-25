@@ -37,7 +37,7 @@
                             </thead>
                             <tbody>
                                 @if(count($eduHist) > 0)
-                                    
+
                                 @foreach ($eduHist as $item)
                                 <tr class="bg-white border-b border-gray-200">
                                     <td class="px-1 py-1 ">
@@ -75,46 +75,4 @@
             </div>
         </div>
     </div>
-    @push('addedScript')
-    <script>
-        function alerta(massage, icon = 'success') {
-            Swal.fire({
-                title: icon === 'success' ? 'Success!' : 'Error!'
-                , [icon === 'error' ? 'html' : 'text']: massage
-                , icon: icon
-            , });
-
-        }
-
-    </script>
-    @if(session('success'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            alerta('{{ session('success')}}', 'success');
-        });
-
-    </script>
-    @endif
-    @if(session('error'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            alerta('{{ session('error') }}', 'error');
-        });
-
-    </script>
-    @endif
-    @if($errors->any())
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let errorMessage = '';
-            @foreach($errors->all() as $error)
-            errorMessage += '<li>{{ $error }}</li>';
-            @endforeach
-
-            alerta('<ul>' + errorMessage + '</ul>', 'error');
-        });
-
-    </script>
-    @endif
-    @endpush
 </x-app-layout>

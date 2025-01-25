@@ -18,7 +18,7 @@
                 <img src="{{ asset('storage/' . Auth::user()->dataDiri->profile_picture) }}" alt="{{ Auth::user()->dataDiri->name}}" class="w-24 h-32 rounded-full mb-4 shadow-lg">
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg relative mb-4">
-                <a href="#" class="absolute top-0 right-0 p-2 text-emerald-500 hover:text-gray-700"><span>Atur </span><i class="fas fa-cogs"></i></a>
+                <a href="{{route('dataDiri.edit',Auth::user()->dataDiri->id)}}" class="absolute top-0 right-0 p-2 text-emerald-500 hover:text-gray-700"><span>Atur </span><i class="fas fa-cogs"></i></a>
                 <div class="p-6 text-gray-900">
                     <table>
                         <tr>

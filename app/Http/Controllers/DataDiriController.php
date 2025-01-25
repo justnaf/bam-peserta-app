@@ -44,7 +44,7 @@ class DataDiriController extends Controller
      */
     public function edit(DataDiri $dataDiri)
     {
-        //
+        return view('profile.datadiri.edit', compact('dataDiri'));
     }
 
     /**
@@ -52,7 +52,17 @@ class DataDiriController extends Controller
      */
     public function update(Request $request, DataDiri $dataDiri)
     {
-        //
+        $dataDiri->name = $request->name;
+        $dataDiri->address = $request->address;
+        $dataDiri->gender = $request->gender;
+        $dataDiri->birth_date = $request->birth_date;
+        $dataDiri->birth_place = $request->birth_place;
+        $dataDiri->phone_number = $request->phone_number;
+        if ($dataDiri->save()) {
+            return redirect()->route('dataDiri.index')->with('success', 'Data Diri berhasil Diperbarui');
+        } else {
+            return redirect()->route('dataDiri.index')->with('error', 'Data Diri Gagal Diperbarui');
+        }
     }
 
     /**

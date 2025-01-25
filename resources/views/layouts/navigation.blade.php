@@ -4,7 +4,7 @@
     </x-nav-link>
     <a href="" class="flex flex-1 flex-col items-center px-3 py-4 hover:bg-emerald-500 hover:text-white"><i class="fas fa-calendar-alt"></i><span>Jadwal</span></a>
     <a href="" class="flex flex-1 flex-col items-center px-3 py-4 hover:bg-emerald-500 hover:text-white"><i class="fas fa-tasks"></i>Penilaian</span></a>
-    <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.*') | request()->routeIs('datadiri.*') | request()->routeIs('eduhistory.*') | request()->routeIs('$orgHistories.*') |request()->routeIs('achievement.*')">
+    <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.*') | request()->routeIs('dataDiri.*') | request()->routeIs('eduhistory.*') | request()->routeIs('$orgHistories.*') |request()->routeIs('achievement.*')">
         <i class="fas fa-id-card"></i><span>Profile</span>
     </x-nav-link>
 </nav>

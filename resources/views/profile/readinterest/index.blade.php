@@ -26,10 +26,10 @@
                                         Jenis Buku
                                     </th>
                                     <th scope="col" class="px-2 py-1">
-                                       Judul
+                                        Judul
                                     </th>
                                     <th scope="col" class="px-2 py-1">
-                                       Penulis
+                                        Penulis
                                     </th>
                                     <th scope="col" class="px-2 py-1">
                                         Aksi
@@ -38,7 +38,7 @@
                             </thead>
                             <tbody>
                                 @if(count($data) > 0)
-                                    
+
                                 @foreach ($data as $item)
                                 <tr class="bg-white border-b border-gray-200">
                                     <td class="px-1 py-1 ">
@@ -76,46 +76,4 @@
             </div>
         </div>
     </div>
-    @push('addedScript')
-    <script>
-        function alerta(massage, icon = 'success') {
-            Swal.fire({
-                title: icon === 'success' ? 'Success!' : 'Error!'
-                , [icon === 'error' ? 'html' : 'text']: massage
-                , icon: icon
-            , });
-
-        }
-
-    </script>
-    @if(session('success'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            alerta('{{ session('success')}}', 'success');
-        });
-
-    </script>
-    @endif
-    @if(session('error'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            alerta('{{ session('error') }}', 'error');
-        });
-
-    </script>
-    @endif
-    @if($errors->any())
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let errorMessage = '';
-            @foreach($errors->all() as $error)
-            errorMessage += '<li>{{ $error }}</li>';
-            @endforeach
-
-            alerta('<ul>' + errorMessage + '</ul>', 'error');
-        });
-
-    </script>
-    @endif
-    @endpush
 </x-app-layout>
