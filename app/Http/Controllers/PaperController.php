@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OwnPaper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PaperController extends Controller
 {
@@ -12,7 +13,8 @@ class PaperController extends Controller
      */
     public function index()
     {
-        //
+        $data = OwnPaper::where('user_id', Auth::id())->get();
+        return view('profile.paper.index', compact('data'));
     }
 
     /**
@@ -20,7 +22,7 @@ class PaperController extends Controller
      */
     public function create()
     {
-        //
+        return view('profile.paper.create');
     }
 
     /**
@@ -28,7 +30,16 @@ class PaperController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new OwnPaper();
+        $data->user_id = Auth::id();
+        $data->name = $request->name;
+        $data->publish_year = $request->publish_year;
+        $data->save();
+        if ($data->wasRecentlyCreated) {
+            return redirect()->route('ownpaper.index')->with('success', 'Data Karya Tulis berhasil Ditambahkan');
+        } else {
+            return redirect()->route('ownpaper.index')->with('error', 'Data Karya Tulis Gagal Ditambahkan');
+        }
     }
 
     /**
@@ -42,24 +53,32 @@ class PaperController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(OwnPaper $ownPaper)
+    public function edit(OwnPaper $ownpaper)
     {
-        //
+        return view('profile.paper.edit', compact('ownpaper'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, OwnPaper $ownPaper)
+    public function update(Request $request, OwnPaper $ownpaper)
     {
-        //
+        $ownpaper->name = $request->name;
+        $ownpaper->publish_year = $request->publish_year;
+        if ($ownpaper->save()) {
+            return redirect()->route('ownpaper.index')->with('success', 'Data Karya Tulis berhasil Diperbarui');
+        } else {
+            return redirect()->route('ownpaper.index')->with('error', 'Data Karya Tulis Gagal Diperbarui');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(OwnPaper $ownPaper)
+    public function destroy(OwnPaper $ownpaper)
     {
-        //
+        $ownpaper->delete();
+
+        return redirect()->route('ownpaper.index')->with('success', 'Karya Tulis Deleted successfully.');
     }
 }

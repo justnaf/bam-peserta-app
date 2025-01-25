@@ -37,9 +37,9 @@ class OrgController extends Controller
         $data->period = $request->period;
         $data->save();
         if ($data->wasRecentlyCreated) {
-            return redirect()->route('orgHistories.index')->with('success', 'Riwayat Organisasi berhasil Diperbarui');
+            return redirect()->route('orgHistories.index')->with('success', 'Riwayat Organisasi berhasil Ditambahkan');
         } else {
-            return redirect()->route('orgHistories.index')->with('error', 'Riwayat Organisasi Gagal Diperbarui');
+            return redirect()->route('orgHistories.index')->with('error', 'Riwayat Organisasi Gagal Ditambahkan');
         }
     }
 
@@ -81,6 +81,6 @@ class OrgController extends Controller
     {
         $orgHistory->delete();
 
-        return redirect()->route('orgHistories.index')->with('success', 'Tempat Deleted successfully.');
+        return redirect()->route('orgHistories.index')->with('success', 'Riwayat Organisasi Deleted successfully.');
     }
 }
