@@ -82,6 +82,6 @@ class EduController extends Controller
     {
         $eduhistory->delete();
 
-        return redirect()->route('eduhistory.index')->with('success', 'Education Deleted successfully.');
+        return redirect()->route('eduhistory.index')->with('success', 'Riwayat Pendidikan Berhasil Dihapus.');
     }
 }

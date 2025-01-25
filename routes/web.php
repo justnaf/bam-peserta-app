@@ -7,6 +7,7 @@ use App\Http\Controllers\EduController;
 use App\Http\Controllers\OrgController;
 use App\Http\Controllers\PaperController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReadInController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('orgHistories', OrgController::class); // Riwayat Organisasi
     Route::resource('achievement', AchieveController::class); // Prestasi
     Route::resource('ownpaper', PaperController::class); // Karya Tulis
+    Route::resource('readInterest', ReadInController::class); // Minat Baca
     Route::post('/datadiri', [CoreController::class, 'storeProfilePic'])->name('profile.ganti.pic');
     Route::get('/profile/email-change', [CoreController::class, 'gantiEmail'])->name('profile.ganti.email');
     Route::get('/profile/pwd-change', [CoreController::class, 'gantiPwd'])->name('profile.ganti.pass');

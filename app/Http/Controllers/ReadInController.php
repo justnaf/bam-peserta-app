@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ReadInterest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReadInController extends Controller
 {
@@ -12,7 +13,8 @@ class ReadInController extends Controller
      */
     public function index()
     {
-        //
+        $data = ReadInterest::where('user_id', Auth::id())->get();
+        return view('profile.readinterest.index', compact('data'));
     }
 
     /**
@@ -20,7 +22,7 @@ class ReadInController extends Controller
      */
     public function create()
     {
-        //
+        return view('profile.readinterest.create');
     }
 
     /**
@@ -28,7 +30,17 @@ class ReadInController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new ReadInterest();
+        $data->user_id = Auth::id();
+        $data->type = $request->type;
+        $data->name = $request->name;
+        $data->authors = $request->authors;
+        $data->save();
+        if ($data->wasRecentlyCreated) {
+            return redirect()->route('readInterest.index')->with('success', 'Data Minat Baca berhasil Ditambahkan');
+        } else {
+            return redirect()->route('readInterest.index')->with('error', 'Data Minat Bacas Gagal Ditambahkan');
+        }
     }
 
     /**
@@ -44,7 +56,7 @@ class ReadInController extends Controller
      */
     public function edit(ReadInterest $readInterest)
     {
-        //
+        return view('profile.readinterest.edit', compact('readInterest'));
     }
 
     /**
@@ -52,7 +64,14 @@ class ReadInController extends Controller
      */
     public function update(Request $request, ReadInterest $readInterest)
     {
-        //
+        $readInterest->type = $request->type;
+        $readInterest->name = $request->name;
+        $readInterest->authors = $request->authors;
+        if ($readInterest->save()) {
+            return redirect()->route('readInterest.index')->with('success', 'Data Minat Baca berhasil Diperbarui');
+        } else {
+            return redirect()->route('readInterest.index')->with('error', 'Data Minat Bacas Gagal Diperbarui');
+        }
     }
 
     /**
@@ -60,6 +79,8 @@ class ReadInController extends Controller
      */
     public function destroy(ReadInterest $readInterest)
     {
-        //
+        $readInterest->delete();
+
+        return redirect()->route('readInterest.index')->with('success', 'Minat Baca Berhasil Dihapus.');
     }
 }

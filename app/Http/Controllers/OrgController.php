@@ -81,6 +81,6 @@ class OrgController extends Controller
     {
         $orgHistory->delete();
 
-        return redirect()->route('orgHistories.index')->with('success', 'Riwayat Organisasi Deleted successfully.');
+        return redirect()->route('orgHistories.index')->with('success', 'Riwayat Organisasi Behasil Dihapus.');
     }
 }

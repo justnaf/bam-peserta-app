@@ -79,6 +79,6 @@ class AchieveController extends Controller
     {
         $achievement->delete();
 
-        return redirect()->route('achievement.index')->with('success', 'Prestasi Deleted successfully.');
+        return redirect()->route('achievement.index')->with('success', 'Prestasi Berhasil Dihapus');
     }
 }

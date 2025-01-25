@@ -24,7 +24,7 @@
                             <a href="{{route('orgHistories.index')}}" class="flex items-center space-x-4"><i class="fas fa-sitemap"></i><span>Riwayat Organisasi</span></a>
                         </li>
                         <li class="border-b-2 py-2 hover:text-emerald-500">
-                            <a href="" class="flex items-center space-x-4"><i class="fas fa-book"></i><span>Minat Baca</span></a>
+                            <a href="{{route('readInterest.index')}}" class="flex items-center space-x-4"><i class="fas fa-book"></i><span>Minat Baca</span></a>
                         </li>
                         <li class="border-b-2 py-2 hover:text-emerald-500">
                             <a href="{{route('ownpaper.index')}}" class="flex items-center space-x-4"><i class="fas fa-feather-alt"></i><span>Karya Tulis</span></a>

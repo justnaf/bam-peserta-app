@@ -79,6 +79,6 @@ class PaperController extends Controller
     {
         $ownpaper->delete();
 
-        return redirect()->route('ownpaper.index')->with('success', 'Karya Tulis Deleted successfully.');
+        return redirect()->route('ownpaper.index')->with('success', 'Karya Tulis Berhasil DIhapus.');
     }
 }
