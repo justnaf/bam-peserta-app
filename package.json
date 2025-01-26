@@ -17,6 +17,7 @@
         "vite": "^6.0"
     },
     "dependencies": {
-        "sweetalert2": "^11.15.10"
+        "sweetalert2": "^11.15.10",
+        "tailwindcss-opentype": "^1.1.0"
     }
 }
