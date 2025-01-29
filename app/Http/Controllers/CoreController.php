@@ -62,6 +62,7 @@ class CoreController extends Controller
                     'file',
                     'image',
                     'mimes:jpg,jpeg,png',
+                    'max:2048'
                 ],
             ], [
                 'name.required' => 'Nama wajib diisi.',
@@ -73,6 +74,7 @@ class CoreController extends Controller
                 'birth_place.required' => 'Tempat lahir wajib diisi.',
                 'profile.required' => 'Profil gambar wajib diunggah.',
                 'profile.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
+                'profile.max' => 'Gambar Gedenya Banget Bos',
             ]);
 
             $dataDiri = DataDiri::where("user_id", Auth::user()->id)->first();
