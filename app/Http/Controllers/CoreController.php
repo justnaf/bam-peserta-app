@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataDiri;
+use App\Models\Event;
+use App\Models\ModelActiveEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Laravel\Facades\Image;
@@ -140,5 +142,20 @@ class CoreController extends Controller
         return view('profile.security.passowrdchange', [
             'user' => $request->user(),
         ]);
+    }
+
+    public function joinEvent(Event $event)
+    {
+        $data = new ModelActiveEvent();
+        $data->user_id = Auth::id();
+        $data->event_id = $event->id;
+        $data->isJoin = 1;
+        $data->status = 'Peserta';
+        $data->save();
+        if ($data->wasRecentlyCreated) {
+            return redirect()->route('events.index')->with('success', 'Sukses Join Kegiatan.');
+        } else {
+            return redirect()->route('events.index')->with('warning', 'Gagal Join Kegiatan');
+        }
     }
 }

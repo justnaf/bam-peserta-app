@@ -4,20 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sesi extends Model
+class ModelActiveEvent extends Model
 {
     protected $fillable = [
+        'user_id',
         'event_id',
-        'name',
-        'speaker',
-        'room',
-        'time',
-        'type',
-        'grade',
-        'cv_path',
-        'materi_path',
+        'isJoin',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function event()
     {

@@ -4,6 +4,7 @@ use App\Http\Controllers\AchieveController;
 use App\Http\Controllers\CoreController;
 use App\Http\Controllers\DataDiriController;
 use App\Http\Controllers\EduController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrgController;
 use App\Http\Controllers\PaperController;
 use App\Http\Controllers\ProfileController;
@@ -17,6 +18,9 @@ Route::get('/', function () {
 Route::get('/dashboard', [CoreController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::resource('events', EventController::class); // Kegiatan
+
+    Route::get('/join-event/{event}', [CoreController::class, 'joinEvent'])->name('join.event');
 
 
     // Profile Route
