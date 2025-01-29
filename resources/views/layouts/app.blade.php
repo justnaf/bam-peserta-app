@@ -69,7 +69,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let errorMessage = '';
-            @foreach($errors - > all() as $error)
+            @foreach($errors->all() as $error)
             errorMessage += '<li>{{ $error }}</li>';
             @endforeach
 
