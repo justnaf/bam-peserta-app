@@ -101,9 +101,6 @@ class CoreController extends Controller
                     return redirect()->route('profile.completation')->with('error', 'Failed to create profile.');
                 }
             }
-
-            // Jika validasi berhasil
-            return redirect()->route('profile.completation')->with('success', 'Data berhasil divalidasi');
         } catch (ValidationException $e) {
             // Tangkap error validasi dan kirim ke view
             return redirect()->route('profile.completation')
@@ -114,23 +111,47 @@ class CoreController extends Controller
 
     public function storeProfilePic(Request $request)
     {
-        $dataDiri = DataDiri::find(Auth::user()->dataDiri->id);
+        try {
+            $request->validate([
+                'profile' => [
+                    'required',
+                    'file',
+                    'image',
+                    'mimes:jpg,jpeg,png',
+                    'max:2048'
+                ],
+            ], [
+                'profile.required' => 'Profil gambar wajib diunggah.',
+                'profile.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
+                'profile.max' => 'Gambar Gedenya Banget Bos',
+            ]);
 
-        if (Storage::disk('public')->delete($dataDiri->profile_picture)) {
-            $image = Image::read($request->file('profile'));
-            $image->coverDown(354, 472);
-            $encoded = $image->toPng();
-            $namePath = uniqid();
-            Storage::disk('public')->put('profile_pic/' . $namePath . '.png', $encoded);
-            $dataDiri->profile_picture = 'profile_pic/' . $namePath . '.png';
-            if ($dataDiri->save()) {
-                return redirect()->route('dataDiri.index')->with('success', 'Sukses Updat Foto Profile.');
-            } else {
-                return redirect()->route('dataDiri.index')->with('warning', 'Gagal Update Foto Profile.');
+            $dataDiri = DataDiri::where("user_id", Auth::user()->id)->first();
+            if (!$dataDiri) {
+                return redirect()->route('dataDiri.index')->with('success', '');
             }
+
+            if (Storage::disk('public')->delete($dataDiri->profile_picture)) {
+                $image = Image::read($request->file('profile'));
+                $image->coverDown(354, 472);
+                $encoded = $image->toPng();
+                $namePath = uniqid();
+                Storage::disk('public')->put('profile_pic/' . $namePath . '.png', $encoded);
+                $dataDiri->profile_picture = 'profile_pic/' . $namePath . '.png';
+                if ($dataDiri->save()) {
+                    return redirect()->route('dataDiri.index')->with('success', 'Sukses Updat Foto Profile.');
+                } else {
+                    return redirect()->route('dataDiri.index')->with('warning', 'Gagal Update Foto Profile.');
+                }
+            }
+        } catch (ValidationException $e) {
+            // Tangkap error validasi dan kirim ke view
+            return redirect()->route('dataDiri.index')
+                ->withErrors($e->validator)
+                ->withInput();
         }
-        return redirect()->route('dataDiri.index')->with('error', 'Gagal Update Foto Profile.');
     }
+
 
     public function gantiEmail(Request $request)
     {
