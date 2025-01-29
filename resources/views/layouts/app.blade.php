@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,7 +50,8 @@
     @if(session('success'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            alerta('{{ session('success')}}', 'success');
+            alerta('{{ session('
+                success ')}}', 'success');
         });
 
     </script>
@@ -58,7 +59,8 @@
     @if(session('error'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            alerta('{{ session('error') }}', 'error');
+            alerta('{{ session('
+                error ') }}', 'error');
         });
 
     </script>
@@ -67,7 +69,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let errorMessage = '';
-            @foreach($errors->all() as $error)
+            @foreach($errors - > all() as $error)
             errorMessage += '<li>{{ $error }}</li>';
             @endforeach
 
