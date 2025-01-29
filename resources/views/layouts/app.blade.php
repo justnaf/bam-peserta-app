@@ -50,8 +50,7 @@
     @if(session('success'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            alerta('{{ session('
-                success ')}}', 'success');
+            alerta('{{ session('uccess ')}}', 'success');
         });
 
     </script>
@@ -59,8 +58,7 @@
     @if(session('error'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            alerta('{{ session('
-                error ') }}', 'error');
+            alerta('{{ session('error ') }}', 'error');
         });
 
     </script>

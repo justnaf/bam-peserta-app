@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="text-center flex flex-col items-center">
-                        <p class="mb-3">
+                        <p class="mb-3 dark:bg-white dark:text-black">
                             {!! QrCode::size(256)->generate(Auth::user()->code) !!}
                         </p>
                         <h1>{{Auth::user()->dataDiri->name}}</h1>
