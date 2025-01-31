@@ -38,63 +38,62 @@
                 </div>
             </div>
             <div class="bg-white overflow-hidden shadow-sm rounded-lg relative mb-4">
-                <div class="py-6 px-8 text-gray-900">
+                <div class="py-6 px-3 text-gray-900">
                     <h1 class="text-center font-bold text-lg mb-3">Jadwal Kegiatan</h1>
                     <div x-data="sessionDropdown()" x-init="init()">
                         <!-- Loop through grouped sessions -->
-                        <template x-for="(sessions, day) in groupedSessions" :key="day">
-                            <div>
-                                <div class="font-bold text-lg bg-emerald-500 px-3 text-white" @click="toggleDetails(day, null)">
-                                    <span x-text="day"></span>
-                                </div>
 
-                                <!-- Loop through sessions for each day -->
-                                <template x-for="session in sessions" :key="session.id">
-                                    <div class="bg-gray-300">
-                                        <div @click="toggleDetails(day, session.time)" class="cursor-pointer flex items-center space-x-2 pl-2">
-                                            <span x-text="session.time"></span>
-                                            <span x-text="session.name"></span>   
-                                            <!-- Chevron icon that toggles -->
-                                            <svg  xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transform transition-transform duration-200" :class="{'rotate-180': selectedSession === session}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </div>
-
-                                        <div x-show="selectedDay === day && selectedTime === session.time" class="pl-4 bg-blue-300">
-                                            <div class="space-y-2 ">
-                                                <p>
-                                                    <strong>File Materi :</strong> 
-                                                    <template x-if="session.materi_path">
-                                                        <a :href="`{{ asset('storage/') }}/${session.materi_path}`" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-3 rounded inline-flex items-center" download>
-                                                            <svg class="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                                <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-                                                            </svg>
-                                                        </a>
-                                                    </template>
-                                                    <template x-if="!session.materi_path">
-                                                        <span>No File</span>
-                                                    </template>
-                                                </p>
-                                                <p>
-                                                    <strong>File CV :</strong> 
-                                                    <template x-if="session.cv_path">
-                                                        <a :href="`{{ asset('storage/') }}/${session.materi_path}`" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-3 rounded inline-flex items-center" download>
-                                                            <svg class="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                                <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-                                                            </svg>
-                                                        </a>
-                                                    </template>
-                                                    <template x-if="!session.cv_path">
-                                                        <span>No File</span>
-                                                    </template>
-                                                </p>
-                                                <p><strong>Narasumber:</strong> <span x-text="session.speaker"></span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </template>
-                            </div>
-                        </template>
+                        <table class="min-w-full bg-white border border-gray-300">
+                            <thead>
+                                <tr class="bg-gray-200">
+                                    <th class="px-1 py-2">Waktu</th>
+                                    <th class="px-1 py-2">Nama Sesi</th>
+                                    <th class="px-1 py-2">File Materi</th>
+                                    <th class="px-1 py-2">File CV</th>
+                                    <th class="px-1 py-2">Narasumber</th>
+                                </tr>
+                            </thead>
+                            <template x-for="(sessions, day) in groupedSessions" :key="day">
+                                <tbody>
+                                    <tr>
+                                        <th colspan="5" class="bg-emerald-500 text-white text-left px-3 py-2 cursor-pointer" @click="toggleDetails(day, null)">
+                                            <span x-text="day"></span>
+                                        </th>
+                                    </tr>
+                                    <template x-for="session in sessions" :key="session.id">
+                                        <tr class="border-t border-gray-300 bg-gray-100 hover:bg-gray-200 cursor-pointer" @click="toggleDetails(day, session.time)">
+                                            <td class="px-1 py-2" x-text="session.time"></td>
+                                            <td class="px-1 py-2" x-text="session.name"></td>
+                                            <td class="px-1 py-2 text-center">
+                                                <template x-if="session.materi_path">
+                                                    <a :href="`{{ asset('storage/') }}/${session.materi_path}`" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-3 rounded inline-flex items-center" download>
+                                                        <svg class="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                            <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+                                                        </svg>
+                                                    </a>
+                                                </template>
+                                                <template x-if="!session.materi_path">
+                                                    <span>No File</span>
+                                                </template>
+                                            </td>
+                                            <td class="px-1 py-2 text-center">
+                                                <template x-if="session.cv_path">
+                                                    <a :href="`{{ asset('storage/') }}/${session.cv_path}`" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-3 rounded inline-flex items-center" download>
+                                                        <svg class="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                            <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+                                                        </svg>
+                                                    </a>
+                                                </template>
+                                                <template x-if="!session.cv_path">
+                                                    <span>No File</span>
+                                                </template>
+                                            </td>
+                                            <td class="px-1 py-2" x-text="session.speaker"></td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </template>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -178,19 +177,19 @@
                 },
 
                 toggleDetails(day, time) {
-                // Check if the same day and time is clicked again
-                if (this.selectedDay === day && this.selectedTime === time) {
-                    // If clicked again, toggle the visibility of the session
-                    this.selectedSession = null;
-                    this.selectedDay = null;
-                    this.selectedTime = null;
-                } else {
-                    // Set the selected day and time to show the session details
-                    this.selectedDay = day;
-                    this.selectedTime = time;
-                    this.selectedSession = this.groupedSessions[day].find(session => session.time === time);
+                    // Check if the same day and time is clicked again
+                    if (this.selectedDay === day && this.selectedTime === time) {
+                        // If clicked again, toggle the visibility of the session
+                        this.selectedSession = null;
+                        this.selectedDay = null;
+                        this.selectedTime = null;
+                    } else {
+                        // Set the selected day and time to show the session details
+                        this.selectedDay = day;
+                        this.selectedTime = time;
+                        this.selectedSession = this.groupedSessions[day].find(session => session.time === time);
+                    }
                 }
-            }
             }
         }
 
