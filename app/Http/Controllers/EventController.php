@@ -14,7 +14,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        $activeEvent = ModelActiveEvent::where('user_id', Auth::id())->with(['user', 'event.sesi'])->first();
+        $activeEvent = ModelActiveEvent::where('user_id', Auth::id())->whereHas('event', function ($query) {
+            $query->where('status', '!=', 'done');
+        })->with(['user', 'event.sesi'])->first();
         $event = Event::where('status', 'registration')->get();
 
         return view('event.index', compact(['activeEvent', 'event']));
