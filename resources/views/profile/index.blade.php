@@ -55,9 +55,6 @@
                         <li class="border-b-2 py-2 hover:text-emerald-500">
                             <a href="{{route('profile.ganti.pass')}}" class="flex items-center space-x-4"><i class="fas fa-user"></i> <span>Ganti Kata Sandi</span></a>
                         </li>
-                        <li class="border-b-2 py-2 hover:text-emerald-500">
-                            <a href="{{route('profile.ganti.email')}}" class="flex items-center space-x-4"><i class="fas fa-university"></i><span>Ganti Email</span></a>
-                        </li>
                         <li class="py-2 hover:text-red-500">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
