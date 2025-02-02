@@ -100,7 +100,7 @@
             @else
             @forelse ($event as $item)
             <div class="bg-white overflow-hidden shadow-sm rounded-lg relative mb-4">
-                <a class="absolute top-0 left-0 px-2 py-1 rounded-br-md text-white bg-blue-500 "><span>{{$item->name}} </span> <i class="fas fa-book-open"></i></a>
+                <a class="absolute top-0 left-0 px-2 py-1 rounded-br-md text-white bg-blue-500 "><span>Upcoming :</span><span>{{$item->name}}</span> <i class="fas fa-book-open"></i></a>
                 <div class="py-10 px-8 text-gray-900">
                     <table class="text-md mb-5">
                         <tr>
@@ -130,7 +130,6 @@
                             <td class="ps-3"><a href="{{'mailto:'.$item->email}}">{{$item->email}}<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
                         </tr>
                     </table>
-                    <a href="{{route('join.event',$item->id)}}" class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">Join</a>
                 </div>
             </div>
             @empty
@@ -148,7 +147,7 @@
     <script>
         function sessionDropdown() {
             return {
-                sessions: @json($activeEvent->event->sesi)
+                sessions: @json($activeEvent - > event - > sesi)
                 , groupedSessions: {}
                 , selectedDay: null
                 , selectedTime: null

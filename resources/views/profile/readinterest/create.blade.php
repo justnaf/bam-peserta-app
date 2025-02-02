@@ -25,7 +25,7 @@
                                     Jenis Buku
                                 </label>
                                 <select class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md p-2 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="type" name="type" required>
-                                    <option selected>Pilih Jenis Buku</option>
+                                    <option disabled selected>Pilih Jenis Buku</option>
                                     <option value="antologi">Antologi</option>
                                     <option value="biografi">Biografi</option>
                                     <option value="dongeng">Dongeng</option>

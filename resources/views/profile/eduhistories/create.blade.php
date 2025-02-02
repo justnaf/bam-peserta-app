@@ -25,7 +25,7 @@
                                     Jenjang
                                 </label>
                                 <select class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md p-2 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="stage" name="stage" required>
-                                    <option selected>Pilih Jenjang</option>
+                                    <option disabled selected>Pilih Jenjang</option>
                                     <option value="Strata 1">Strata 1</option>
                                     <option value="Diploma 4">Diploma 4</option>
                                     <option value="Diploma 3">Diploma 3</option>

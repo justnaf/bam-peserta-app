@@ -128,7 +128,7 @@ class CoreController extends Controller
 
             $dataDiri = DataDiri::where("user_id", Auth::user()->id)->first();
             if (!$dataDiri) {
-                return redirect()->route('dataDiri.index')->with('success', '');
+                return redirect()->route('dataDiri.index')->with('error', 'User Tidak Ditemukan');
             }
 
             if (Storage::disk('public')->delete($dataDiri->profile_picture)) {
