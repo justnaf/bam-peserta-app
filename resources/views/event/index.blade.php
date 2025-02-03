@@ -34,6 +34,10 @@
                             <td><i class="fas fa-envelope-open-text"></i></td>
                             <td class="ps-3"><a href="{{'mailto:'.$activeEvent->event->email}}">{{$activeEvent->event->email}}<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
                         </tr>
+                        <tr class="mb-3">
+                            <td><i class="fas fa-envelope-open-text"></i></td>
+                            <td class="ps-3"><a href="http://wa.me/628973007222">WA LP2SI<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -147,7 +151,7 @@
     <script>
         function sessionDropdown() {
             return {
-                sessions: @json($activeEvent->event->sesi)
+                sessions: @json($activeEvent - > event - > sesi)
                 , groupedSessions: {}
                 , selectedDay: null
                 , selectedTime: null
