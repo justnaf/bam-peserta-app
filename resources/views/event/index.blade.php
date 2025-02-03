@@ -111,7 +111,7 @@
             @else
             @forelse ($event as $item)
             <div class="bg-white overflow-hidden shadow-sm rounded-lg relative mb-4">
-                <a class="absolute top-0 left-0 px-2 py-1 rounded-br-md text-white bg-blue-500 "><span>Upcoming :</span><span>{{$item->name}}</span> <i class="fas fa-book-open"></i></a>
+                <a class="absolute top-0 left-0 px-2 py-1 rounded-br-md text-white bg-blue-500 "><span>Upcoming : </span><span>{{$item->name}}</span> <i class="fas fa-book-open"></i></a>
                 <div class="py-10 px-8 text-gray-900" x-data="swalJoin()">
                     <table class="text-md mb-5">
                         <tr>
@@ -145,7 +145,7 @@
                             <td class="ps-3"><a href="http://wa.me/628973007222">WA LP2SI<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
                         </tr>
                     </table>
-                    <a href="#" @click="confirmJoin('{{ route('join.event', $item->id) }}')" 
+                    <a href="#" @click="confirmJoin('{{ route('join.event', $item->id) }}','{{$item->name}}')" 
                         class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">
                         Join
                      </a>
@@ -166,10 +166,10 @@
     <script>
         function swalJoin() {
             return {
-                confirmJoin(url) {
+                confirmJoin(url,name) {
                     Swal.fire({
                         title: 'Pastikan Kembali!'
-                        , text: "Apakah Sudah Sesuai Gelombang Anda? Anda Tidak Bisa Membatalkan Jika Sudah Join!"
+                        , text: 'Apakah Yakin Bergabung di ${name}?'
                         , icon: 'warning'
                         , showCancelButton: true
                         , confirmButtonColor: '#3085d6'
