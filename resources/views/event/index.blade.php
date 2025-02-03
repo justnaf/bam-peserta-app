@@ -112,7 +112,7 @@
             @forelse ($event as $item)
             <div class="bg-white overflow-hidden shadow-sm rounded-lg relative mb-4">
                 <a class="absolute top-0 left-0 px-2 py-1 rounded-br-md text-white bg-blue-500 "><span>Upcoming :</span><span>{{$item->name}}</span> <i class="fas fa-book-open"></i></a>
-                <div class="py-10 px-8 text-gray-900">
+                <div class="py-10 px-8 text-gray-900" x-data="swalJoin()">
                     <table class="text-md mb-5">
                         <tr>
                             <td colspan="2" class="text-md font-extrabold">Detail Kegiatan:</td>
@@ -145,15 +145,12 @@
                             <td class="ps-3"><a href="http://wa.me/628973007222">WA LP2SI<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
                         </tr>
                     </table>
-                    <button type="button" @click="confirmJoin()" class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">
-                        Join
-                    </button>
-
+                    <a href="{{route('join.event',$item->id)}}" class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">Join</a>
                 </div>
             </div>
             @empty
             <div class="bg-white overflow-hidden shadow-sm rounded-lg relative mb-4">
-                <div class="py-10 px-8 text-gray-900 text-center">
+                <div class="py-10 px-8 text-gray-900 text-center" ">
                     <p>Tidak Ada Event Yang Open Registrasi</p>
                 </div>
             </div>
@@ -163,21 +160,26 @@
     </div>
     @push('addedScript')
     <script>
-         function confirmJoin() {
-            Swal.fire({
-                title: 'Apakah Sudah Sesuai Dengan Gelombang Anda?'
-                , text: "Anda tidak bisa membatalkan setelah bergabung!"
-                , icon: 'warning'
-                , showCancelButton: true
-                , confirmButtonColor: '#3085d6'
-                , cancelButtonColor: '#d33'
-                , confirmButtonText: 'Ya, Bergabung!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = joinUrl;
+        function swalJoin() {
+            return {
+                confirmJoin(url) {
+                    Swal.fire({
+                        title: 'Pastikan Kembali!'
+                        , text: "Apakah Sudah Sesuai Gelombang Anda? Anda Tidak Bisa Membatalkan Jika Sudah Join!"
+                        , icon: 'warning'
+                        , showCancelButton: true
+                        , confirmButtonColor: '#3085d6'
+                        , cancelButtonColor: '#d33'
+                        , confirmButtonText: 'Ya, Bergabung!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = url;
+                        }
+                    });
                 }
-            });
+            }
         }
+
     </script>
     @if($activeEvent)
     <script>
