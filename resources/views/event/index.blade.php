@@ -145,7 +145,7 @@
                             <td class="ps-3"><a href="http://wa.me/628973007222">WA LP2SI<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
                         </tr>
                     </table>
-                    <a @click="confirmJoin(@json(route('join.event', $item->id)))" class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">
+                    <a @click="confirmJoin()" class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">
                         Join
                     </a>
 
@@ -211,7 +211,7 @@
             }
         }
 
-        function confirmJoin(joinUrl) {
+        function confirmJoin() {
             Swal.fire({
                 title: 'Apakah Anda yakin ingin bergabung?'
                 , text: "Anda tidak bisa membatalkan setelah bergabung!"
