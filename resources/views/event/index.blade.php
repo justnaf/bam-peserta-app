@@ -169,7 +169,7 @@
                 confirmJoin(url,name) {
                     Swal.fire({
                         title: 'Pastikan Kembali!'
-                        , text: 'Apakah Yakin Bergabung di ${name}?'
+                        , text: `Apakah Yakin Bergabung di ${name}?`
                         , icon: 'warning'
                         , showCancelButton: true
                         , confirmButtonColor: '#3085d6'
