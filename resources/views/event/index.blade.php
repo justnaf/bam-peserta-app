@@ -162,6 +162,23 @@
         </div>
     </div>
     @push('addedScript')
+    <script>
+         function confirmJoin(joinUrl) {
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin bergabung?'
+                , text: "Anda tidak bisa membatalkan setelah bergabung!"
+                , icon: 'warning'
+                , showCancelButton: true
+                , confirmButtonColor: '#3085d6'
+                , cancelButtonColor: '#d33'
+                , confirmButtonText: 'Ya, Bergabung!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = joinUrl;
+                }
+            });
+        }
+    </script>
     @if($activeEvent)
     <script>
         function sessionDropdown() {
@@ -209,22 +226,6 @@
                     }
                 }
             }
-        }
-
-        function confirmJoin(joinUrl) {
-            Swal.fire({
-                title: 'Apakah Anda yakin ingin bergabung?'
-                , text: "Anda tidak bisa membatalkan setelah bergabung!"
-                , icon: 'warning'
-                , showCancelButton: true
-                , confirmButtonColor: '#3085d6'
-                , cancelButtonColor: '#d33'
-                , confirmButtonText: 'Ya, Bergabung!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = joinUrl;
-                }
-            });
         }
 
     </script>
