@@ -45,7 +45,7 @@
                             <td class="ps-3"><a href="http://wa.me/628973007222">WA LP2SI<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
                         </tr>
                     </table>
-                  
+
                 </div>
             </div>
             <div class="bg-white overflow-hidden shadow-sm rounded-lg relative mb-4">
@@ -141,7 +141,10 @@
                             <td class="ps-3"><a href="{{'mailto:'.$item->email}}">{{$item->email}}<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
                         </tr>
                     </table>
-                    <a href="{{route('join.event',$item->id)}}" class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">Join</a>
+                    <a href="#" @click.prevent="confirmJoin('{{ route('join.event', $item->id) }}')" class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">
+                        Join
+                    </a>
+
                 </div>
             </div>
             @empty
@@ -159,7 +162,7 @@
     <script>
         function sessionDropdown() {
             return {
-                sessions: @json($activeEvent->event->sesi)
+                sessions: @json($activeEvent - > event - > sesi)
                 , groupedSessions: {}
                 , selectedDay: null
                 , selectedTime: null
@@ -202,6 +205,22 @@
                     }
                 }
             }
+        }
+
+        function confirmJoin(joinUrl) {
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin bergabung?'
+                , text: "Anda tidak bisa membatalkan setelah bergabung!"
+                , icon: 'warning'
+                , showCancelButton: true
+                , confirmButtonColor: '#3085d6'
+                , cancelButtonColor: '#d33'
+                , confirmButtonText: 'Ya, Bergabung!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = joinUrl;
+                }
+            });
         }
 
     </script>
