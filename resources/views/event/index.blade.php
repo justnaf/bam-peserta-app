@@ -140,8 +140,12 @@
                             <td><i class="fas fa-envelope-open-text"></i></td>
                             <td class="ps-3"><a href="{{'mailto:'.$item->email}}">{{$item->email}}<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
                         </tr>
+                        <tr class="mb-3">
+                            <td><i class="fas fa-envelope-open-text"></i></td>
+                            <td class="ps-3"><a href="http://wa.me/628973007222">WA LP2SI<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
+                        </tr>
                     </table>
-                    <a @click.prevent="confirmJoin('{{ route('join.event', $item->id) }}')" class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">
+                    <a @click="confirmJoin(@json(route('join.event', $item->id)))" class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">
                         Join
                     </a>
 
