@@ -145,9 +145,9 @@
                             <td class="ps-3"><a href="http://wa.me/628973007222">WA LP2SI<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
                         </tr>
                     </table>
-                    <button @click.prevent="confirmJoin('{{ route('join.event', $item->id) }}')" class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">
+                    <a @click="confirmJoin('{{ route('join.event', $item->id) }}')" class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">
                         Join
-                    </button>
+                    </a>
 
                 </div>
             </div>
@@ -165,7 +165,7 @@
     <script>
          function confirmJoin(joinUrl) {
             Swal.fire({
-                title: 'Apakah Anda yakin ingin bergabung?'
+                title: 'Apakah Sudah Sesuai Dengan Gelombang Anda?'
                 , text: "Anda tidak bisa membatalkan setelah bergabung!"
                 , icon: 'warning'
                 , showCancelButton: true
