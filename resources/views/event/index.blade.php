@@ -151,7 +151,7 @@
     <script>
         function sessionDropdown() {
             return {
-                sessions: @json($activeEvent - > event - > sesi)
+                sessions: @json($activeEvent->event->sesi)
                 , groupedSessions: {}
                 , selectedDay: null
                 , selectedTime: null
