@@ -14,6 +14,9 @@
                 <a class="absolute top-0 left-0 px-2 py-1 rounded-br-md text-white bg-emerald-500 "><span>Kegiatan Mu Sekarang </span> <i class="fas fa-book-open"></i></a>
                 <div class="py-10 px-8 text-gray-900">
                     <table class="text-md">
+                        <tr>
+                            <td colspan="2" class="text-md font-extrabold">Detail Kegiatan:</td>
+                        </tr>
                         <tr class="mb-3">
                             <td><i class="fas fa-map-pin"></i></td>
                             <td class="ps-3"><a href="{{$activeEvent->event->location_url}}">{{$activeEvent->event->location}}<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
@@ -25,6 +28,9 @@
                         <tr class="mb-3">
                             <td><i class="fas fa-calendar-times"></i></td>
                             <td class="ps-3">{{$activeEvent->event->end_date}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-md pt-2 font-extrabold">Informasi Lebih Lanjut Hubungi :</td>
                         </tr>
                         <tr class="mb-3">
                             <td><i class="fas fa-building"></i></td>
@@ -39,6 +45,7 @@
                             <td class="ps-3"><a href="http://wa.me/628973007222">WA LP2SI<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
                         </tr>
                     </table>
+                  
                 </div>
             </div>
             <div class="bg-white overflow-hidden shadow-sm rounded-lg relative mb-4">
@@ -134,6 +141,7 @@
                             <td class="ps-3"><a href="{{'mailto:'.$item->email}}">{{$item->email}}<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
                         </tr>
                     </table>
+                    <a href="{{route('join.event',$item->id)}}" class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">Join</a>
                 </div>
             </div>
             @empty

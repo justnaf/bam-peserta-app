@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AchieveController;
+use App\Http\Controllers\AlergicController;
 use App\Http\Controllers\CoreController;
 use App\Http\Controllers\DataDiriController;
+use App\Http\Controllers\DiseaseController;
 use App\Http\Controllers\EduController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrgController;
@@ -19,6 +21,8 @@ Route::get('/dashboard', [CoreController::class, 'index'])->middleware(['auth', 
 
 Route::middleware('auth')->group(function () {
     Route::resource('events', EventController::class); // Kegiatan
+    Route::resource('diseases', DiseaseController::class); // Penyakit
+    Route::resource('alergics', AlergicController::class); // Alergi
 
     Route::get('/join-event/{event}', [CoreController::class, 'joinEvent'])->name('join.event');
 

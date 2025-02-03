@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\DataDiri;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class DataDiriController extends Controller
 {
@@ -71,5 +73,20 @@ class DataDiriController extends Controller
     public function destroy(DataDiri $dataDiri)
     {
         //
+    }
+
+    public function deleteProfilePic(Request $request)
+    {
+        $dataDiri = DataDiri::where('user_id', $request->user_id)->get();
+        if (Storage::disk('public')->delete($dataDiri->profile_picture)) {
+            return response()->json([
+                'response_code' => '200',
+                'message' => 'Profile picture deleted successfully'
+            ], Response::HTTP_OK);
+        }
+        return response()->json([
+            'response_code' => '404',
+            'message' => 'data not found'
+        ], Response::HTTP_OK);
     }
 }

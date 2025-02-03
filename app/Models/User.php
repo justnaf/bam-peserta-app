@@ -50,10 +50,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function dataDiri()
-    {
-        return $this->hasOne(DataDiri::class);
-    }
 
     public function event()
     {
@@ -64,4 +60,49 @@ class User extends Authenticatable
     {
         return $this->hasMany(ModelActiveEvent::class);
     }
+    public function modelHasRestroom()
+    {
+        return $this->hasMany(ModelHasRestroom::class);
+    }
+
+    // Detail Of User
+    public function dataDiri()
+    {
+        return $this->hasOne(DataDiri::class);
+    }
+
+    public function eduHist()
+    {
+        return $this->hasMany(EduHistories::class);
+    }
+    public function orgHist()
+    {
+        return $this->hasMany(OrgHistories::class);
+    }
+
+    public function ownPaper()
+    {
+        return $this->hasMany(OwnPaper::class);
+    }
+
+    public function ownAchieve()
+    {
+        return $this->hasMany(OwnAchievement::class);
+    }
+
+    public function readInterest()
+    {
+        return $this->hasMany(ReadInterest::class);
+    }
+
+    public function alergics()
+    {
+        return $this->hasMany(Alergic::class);
+    }
+
+    public function diseases()
+    {
+        return $this->hasMany(Disease::class);
+    }
+    // end Detail Of User
 }
