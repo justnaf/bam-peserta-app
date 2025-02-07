@@ -56,7 +56,7 @@
                             <p class="text-center">Belum Dapat Pembagian Ruang</p>
                         </template>
                         <template x-if="hasRoom">
-                            <p x-text="hasRoom"></p>
+                            <p class="text-center">{{$roomEvent->restRoom->name}}</p>
                         </template>
                     </div>
                 </div>
