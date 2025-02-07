@@ -21,7 +21,7 @@ class EventController extends Controller
         if ($activeEvent) {
             $sesi = $activeEvent->event->sesi;
             $roomEvent = ModelHasRestroom::where('user_id', Auth::id())->where('event_id', $activeEvent->event_id)->first();
-            return view('event.index', compact(['activeEvent', 'event', 'roomEvent', 'sesi']));
+            return view('event.index', compact(['activeEvent', 'roomEvent', 'sesi']));
         }
         $event = Event::where('status', 'registration')->get();
 
