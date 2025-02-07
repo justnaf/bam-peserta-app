@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\ModelActiveEvent;
+use App\Models\ModelHasRestroom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,9 +18,13 @@ class EventController extends Controller
         $activeEvent = ModelActiveEvent::where('user_id', Auth::id())->whereHas('event', function ($query) {
             $query->where('status', '!=', 'done');
         })->with(['user', 'event.sesi'])->first();
+
+        $sesi = $activeEvent->event->sesi;
+
+        $roomEvent = ModelHasRestroom::where('user_id', Auth::id())->where('event_id', $activeEvent->event_id)->first();
         $event = Event::where('status', 'registration')->get();
 
-        return view('event.index', compact(['activeEvent', 'event']));
+        return view('event.index', compact(['activeEvent', 'event', 'roomEvent', 'sesi']));
     }
 
     /**

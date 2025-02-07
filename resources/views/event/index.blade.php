@@ -49,6 +49,19 @@
                 </div>
             </div>
             <div class="bg-white overflow-hidden shadow-sm rounded-lg relative mb-4">
+                <a class="absolute top-0 left-0 px-2 py-1 rounded-br-md text-white bg-emerald-500 "><span>Ruang Istirahat Mu </span> <i class="fas fa-building"></i></a>
+                <div class="py-10 px-8 text-gray-900">
+                    <div x-data="{ hasRoom: @json(!empty($roomEvent->restRoom->name)) }">
+                        <template x-if="!hasRoom">
+                            <p class="text-center">Belum Dapat Pembagian Ruang</p>
+                        </template>
+                        <template x-if="hasRoom">
+                            <p x-text="hasRoom"></p>
+                        </template>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg relative mb-4">
                 <div class="py-6 px-3 text-gray-900">
                     <h1 class="text-center font-bold text-lg mb-3">Jadwal Kegiatan</h1>
                     <div x-data="sessionDropdown()" x-init="init()">
@@ -145,11 +158,10 @@
                             <td class="ps-3"><a href="http://wa.me/628973007222">WA LP2SI<sup><i class="fas fa-external-link-alt ps-2"></i></sup></a></td>
                         </tr>
                     </table>
-                    <a href="#" @click="confirmJoin('{{ route('join.event', $item->id) }}','{{$item->name}}')" 
-                        class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">
+                    <a href="#" @click="confirmJoin('{{ route('join.event', $item->id) }}','{{$item->name}}')" class="bg-emerald-500 text-white py-2 px-5 rounded-md hover:bg-blue-500">
                         Join
-                     </a>
-                     
+                    </a>
+
                 </div>
             </div>
             @empty
@@ -169,72 +181,72 @@
                 confirmJoin(url,name) {
                     Swal.fire({
                         title: 'Pastikan Kembali!'
-                        , html: `Apakah Yakin Bergabung di <span class="font-extrabold text-emerald-500">${name}</span>?`
-                        , icon: 'warning'
-                        , showCancelButton: true
-                        , confirmButtonColor: '#3085d6'
-                        , cancelButtonColor: '#d33'
-                        , confirmButtonText: 'Ya, Bergabung!'
+                        , html: `Apakah Yakin Bergabung di <span class=" font-extrabold text-emerald-500">${name}</span>?`
+                    , icon: 'warning'
+                    , showCancelButton: true
+                    , confirmButtonColor: '#3085d6'
+                    , cancelButtonColor: '#d33'
+                    , confirmButtonText: 'Ya, Bergabung!'
                     }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = url;
-                        }
-                    });
-                }
-            }
-        }
-
-    </script>
-    @if($activeEvent)
-    <script>
-        function sessionDropdown() {
-            return {
-                sessions: @json($activeEvent->event->sesi)
-                , groupedSessions: {}
-                , selectedDay: null
-                , selectedTime: null
-                , selectedSession: null,
-
-                init() {
-                    this.groupSessionsByDay();
-                },
-
-                groupSessionsByDay() {
-                    this.groupedSessions = this.sessions.reduce((groups, session) => {
-                        const [day, time] = session.time.split(',');
-                        const dayTrimmed = day.trim();
-                        const timeTrimmed = time ? time.trim() : 'Unknown Time';
-
-                        if (!groups[dayTrimmed]) {
-                            groups[dayTrimmed] = [];
-                        }
-
-                        groups[dayTrimmed].push({
-                            ...session
-                            , time: timeTrimmed
-                        });
-                        return groups;
-                    }, {});
-                },
-
-                toggleDetails(day, time) {
-                    // Check if the same day and time is clicked again
-                    if (this.selectedDay === day && this.selectedTime === time) {
-                        // If clicked again, toggle the visibility of the session
-                        this.selectedSession = null;
-                        this.selectedDay = null;
-                        this.selectedTime = null;
-                    } else {
-                        // Set the selected day and time to show the session details
-                        this.selectedDay = day;
-                        this.selectedTime = time;
-                        this.selectedSession = this.groupedSessions[day].find(session => session.time === time);
+                    if (result.isConfirmed) {
+                    window.location.href = url;
                     }
-                }
-            }
-        }
+                    });
+                    }
+                    }
+                    }
 
-    </script>
-    @endif
-    @endpush
+                    </script>
+                    @if($activeEvent)
+                    <script>
+                        function sessionDropdown() {
+                            return {
+                                sessions: @json($sesi)
+                                , groupedSessions: {}
+                                , selectedDay: null
+                                , selectedTime: null
+                                , selectedSession: null,
+
+                                init() {
+                                    this.groupSessionsByDay();
+                                },
+
+                                groupSessionsByDay() {
+                                    this.groupedSessions = this.sessions.reduce((groups, session) => {
+                                        const [day, time] = session.time.split(',');
+                                        const dayTrimmed = day.trim();
+                                        const timeTrimmed = time ? time.trim() : 'Unknown Time';
+
+                                        if (!groups[dayTrimmed]) {
+                                            groups[dayTrimmed] = [];
+                                        }
+
+                                        groups[dayTrimmed].push({
+                                            ...session
+                                            , time: timeTrimmed
+                                        });
+                                        return groups;
+                                    }, {});
+                                },
+
+                                toggleDetails(day, time) {
+                                    // Check if the same day and time is clicked again
+                                    if (this.selectedDay === day && this.selectedTime === time) {
+                                        // If clicked again, toggle the visibility of the session
+                                        this.selectedSession = null;
+                                        this.selectedDay = null;
+                                        this.selectedTime = null;
+                                    } else {
+                                        // Set the selected day and time to show the session details
+                                        this.selectedDay = day;
+                                        this.selectedTime = time;
+                                        this.selectedSession = this.groupedSessions[day].find(session => session.time === time);
+                                    }
+                                }
+                            }
+                        }
+
+                    </script>
+                    @endif
+                    @endpush
 </x-app-layout>
