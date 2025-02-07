@@ -51,14 +51,11 @@
             <div class="bg-white overflow-hidden shadow-sm rounded-lg relative mb-4">
                 <a class="absolute top-0 left-0 px-2 py-1 rounded-br-md text-white bg-emerald-500 "><span>Ruang Istirahat Mu </span> <i class="fas fa-building"></i></a>
                 <div class="py-10 px-8 text-gray-900">
-                    <div x-data="{ hasRoom: @json(!empty($roomEvent->restRoom->name)) }">
-                        <template x-if="!hasRoom">
-                            <p class="text-center">Belum Dapat Pembagian Ruang</p>
-                        </template>
-                        <template x-if="hasRoom">
-                            <p class="text-center">{{$roomEvent->restRoom->name}}</p>
-                        </template>
-                    </div>
+                    @if (!empty($roomEvent) && !empty($roomEvent->restRoom))
+                    <p class="text-center">{{$roomEvent->restRoom->name}}</p>
+                    @else
+                    <p class="text-center">Belum Dapat Pembagian Ruang</p>
+                    @endif
                 </div>
             </div>
             <div class="bg-white overflow-hidden shadow-sm rounded-lg relative mb-4">
