@@ -25,7 +25,7 @@ class EventController extends Controller
         }
         $event = Event::where('status', 'registration')->get();
 
-        return view('event.index', compact(['event']));
+        return view('event.index', compact(['activeEvent', 'event']));
     }
 
     /**
