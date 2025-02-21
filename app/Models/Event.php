@@ -35,6 +35,11 @@ class Event extends Model
         return $this->hasMany(ModelActiveEvent::class);
     }
 
+    public function modelHistoryEvent()
+    {
+        return $this->hasMany(ModelHistoryEvent::class);
+    }
+
     public function restRoom()
     {
         return $this->hasMany(RestRoom::class);

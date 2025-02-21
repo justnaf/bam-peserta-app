@@ -19,7 +19,7 @@
 </head>
 <body class="md:max-w-sm md:text-sm text-xs mx-auto bg-gray-800">
     <div class="bg-gray-200 min-h-screen">
-        <header class="w-full flex justify-between bg-white shadow p-4 fixed md:max-w-sm">
+        <header class="z-20 w-full flex justify-between bg-white shadow p-4 fixed md:max-w-sm">
             {{$header}}
             <section class="flex items-center">
                 <x-application-logo width="60px" height="20px" />

@@ -7,6 +7,7 @@ use App\Http\Controllers\DataDiriController;
 use App\Http\Controllers\DiseaseController;
 use App\Http\Controllers\EduController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\MajelisController;
 use App\Http\Controllers\OrgController;
 use App\Http\Controllers\PaperController;
 use App\Http\Controllers\ProfileController;
@@ -25,6 +26,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('alergics', AlergicController::class); // Alergi
 
     Route::get('/join-event/{event}', [CoreController::class, 'joinEvent'])->name('join.event');
+
+    /** Kajian Route */
+    Route::get('/kajian', [MajelisController::class, 'index'])->name('kajian.index');
+    Route::get('/kajian/history', [MajelisController::class, 'listView'])->name('kajian.list');
+    Route::get('/kajian/history/tambah', [MajelisController::class, 'create'])->name('kajian.create');
+    Route::post('/kajian/history/', [MajelisController::class, 'store'])->name('kajian.store');
+    Route::patch('/kajian/history/{kajianId}', [MajelisController::class, 'update'])->name('kajian.update');
+    Route::get('/kajian/{kajianId}/edit', [MajelisController::class, 'edit'])->name('kajian.edit');
+    /** END Kajian Route */
 
 
     // Profile Route

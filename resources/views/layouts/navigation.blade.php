@@ -5,7 +5,9 @@
     <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.*')">
         <i class="fas fa-calendar-alt"></i><span>Kegiatan</span>
     </x-nav-link>
-    <a href="" class="flex flex-1 flex-col items-center px-3 py-4 hover:bg-emerald-500 hover:text-white"><i class="fas fa-tasks"></i>Penilaian</span></a>
+    <x-nav-link :href="route('kajian.index')" :active="request()->routeIs('kajian.*')">
+        <i class="fas fa-tasks"></i><span>Kajian</span>
+    </x-nav-link>
     <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.*') | request()->routeIs('dataDiri.*') | request()->routeIs('eduhistory.*') | request()->routeIs('$orgHistories.*') |request()->routeIs('achievement.*')">
         <i class="fas fa-id-card"></i><span>Profile</span>
     </x-nav-link>

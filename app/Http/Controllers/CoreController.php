@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DataDiri;
 use App\Models\Event;
 use App\Models\ModelActiveEvent;
+use App\Models\PresenceMajelis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Laravel\Facades\Image;
@@ -16,11 +17,12 @@ class CoreController extends Controller
     public function index()
     {
         $dataDiri = DataDiri::where("user_id", Auth::user()->id)->first();
+        $cek = PresenceMajelis::where('user_id_presenced', Auth::id())->where('resume', null)->count();
 
         if (!$dataDiri) {
             return redirect()->route('profile.completation');
         }
-        return view("dashboard", compact('dataDiri'));
+        return view("dashboard", compact(['dataDiri', 'cek']));
     }
 
     public function profileInfo()
