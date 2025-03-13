@@ -20,6 +20,13 @@
                     <p>Periode Testing : 1 Maret - 31 Maret 2025</p>
                 </div>
             </div>
+            <div class="bg-green-300 border-green-500 border-2 rounded-md shadow-sm mb-2">
+                <div class="p-6 text-gray-600 text-center">
+                    <p class="font-extrabold">KHUSUS KAJIAN JUM'AT 14 MARET 2025</p>
+                    <p>Kajian Bersama Prof. Dr. Abdul Mu'ti, M. Ed</p>
+                    <p>DATA PRESENSI TIDAK AKAN DI HAPUS</p>
+                </div>
+            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="text-center flex flex-col items-center">

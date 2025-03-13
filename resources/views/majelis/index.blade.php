@@ -11,7 +11,7 @@
                 <a href="{{route('kajian.list')}}" class="p-2 border text-white bg-green-500 border-green-500 rounded-lg">Lihat Riwayat Kajian</a>
             </div>
             @foreach ($kajian as $item)
-            <div class="bg-white relative overflow-hidden shadow-sm rounded-lg">
+            <div class="bg-white relative overflow-hidden shadow-sm rounded-lg mb-3">
                 <p class="absolute top-0 left-0 px-2 py-1 rounded-br-md text-white bg-blue-500 "><span>{{ucfirst($item->status)}}</span> <i class="fas fa-book-open"></i></p>
                 <div class="p-6 text-gray-900">
                     <h1 class="font-extrabold mt-3">{{$item->name}}</h1>
@@ -29,7 +29,10 @@
                         </div>
                         <div class="flex gap-x-1 items-center">
                             <i class="fas fa-calendar-times w-2"></i>
-                            <p class="ps-3">{{$item->end_date}}</p>
+                            <div>
+                                <p class="ps-3 ">Pukul : {{\Carbon\Carbon::parse($item->end_date)->locale('id')->translatedFormat('H:i')}}</p>
+                                <p class="ps-3">{{\Carbon\Carbon::parse($item->end_date)->locale('id')->translatedFormat('l, d F Y')}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
