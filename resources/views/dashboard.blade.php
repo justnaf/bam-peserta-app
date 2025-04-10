@@ -13,12 +13,6 @@
                 <p>Kamu Memiliki <span class="font-extrabold">{{$cek}}</span> Resume Kajian Belum Terisi <a href="{{route('kajian.list')}}" class="underline">Lenkapi Disini</a></p>
             </div>
             @endif
-            <div class="bg-orange-300 border-orange-500 border-2 rounded-md shadow-sm mb-2">
-                <div class="p-6 text-gray-600 text-center">
-                    <p>KAJIAN SEDANG DALAM PROSES TESTING FITUR</p>
-                    <p>Periode Testing : 1 Maret - 31 Maret 2025</p>
-                </div>
-            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="text-center flex flex-col items-center">

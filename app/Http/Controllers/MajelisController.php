@@ -53,7 +53,6 @@ class MajelisController extends Controller
                 'file',
                 'image',
                 'mimes:jpg,jpeg,png',
-                'max:2048'
             ]
         ], [
             'desc.required' => 'Nama Kegiatan Wajib Di Isi',
